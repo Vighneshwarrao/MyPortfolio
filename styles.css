@@ -775,7 +775,9 @@ footer {
         visibility: hidden;
         opacity: 0;
     }
-
+#particles-js{
+    height:135%;
+}
     .text-section h1 {
         font-size: 1.4rem;
     }
