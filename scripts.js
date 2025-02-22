@@ -53,11 +53,11 @@ const projects = [
     ]
   },
   {
-    title: "Project 3:Statistical Analysis of India’s All-Time Best Cricket XI",
-    tools: ["Python", "BeautifulSoup", "Pandas", "NumPy", "Matplotlib", "Seaborn", "Scikit-learn"],
-    details: ["<h4>Project Overview:</h4> This project scrapes cricket player statistics from <strong>ESPN Cricinfo</strong>, preprocesses the data, performs <strong>Exploratory Data Analysis (EDA)</strong>, and engineers new performance metrics. Using a <strong>weighted scoring system</strong>, it ranks players based on various Key Performance Indicators (KPIs) to construct India's <strong>all-time playing XI</strong> for Test, ODI, and T20I formats.<br><br>",
+    title: "Statistical Analysis of India’s All-Time Best Cricket XI",
+    tools: ["Python", "BeautifulSoup", "Selenium","Pandas", "NumPy", "Matplotlib", "Seaborn", "Scikit-learn"],
+    details: ["<h4>Project Overview:</h4> This project scrapes cricket player stats from <strong>ESPN Cricinfo</strong>, preprocesses the data, performs <strong>Exploratory Data Analysis (EDA)</strong>, and engineers new performance metrics. Using a <strong>weighted scoring system</strong>, it ranks players based on various Key Performance Indicators (KPIs) to construct India's <strong>all-time playing XI</strong> for Test, ODI, and T20I formats.<br><br>",
 
-      "<h4>Data Scraping & Preprocessing:</h4> - Used <strong>BeautifulSoup & Requests</strong> to scrape player statistics (batting, bowling, fielding) from ESPN Cricinfo.<br> - Handled <strong>missing values, duplicate records, and inconsistencies</strong> in scraped data.<br> - Merged different data sources (batting, bowling, and fielding stats) into a structured dataset.<br><br>",
+      "<h4>Data Scraping & Preprocessing:</h4> - Used <strong>BeautifulSoup & Selenium</strong> to scrape player statistics (batting, bowling, fielding) from ESPN Cricinfo.<br> - Handled <strong>missing values, duplicate records, and inconsistencies</strong> in scraped data.<br> - Merged different data sources (batting, bowling, and fielding stats) into a structured dataset.<br><br>",
 
       "<h4>Feature Engineering:</h4> - Created  custom performance indexes  to better evaluate players:<br> - <strong>Batting Index:</strong> Combines runs, batting average, strike rate, and consistency.<br> - <strong>Bowling Index:</strong> Factors in wickets, bowling average, economy rate, and match impact.<br> - <strong>Fielding Index:</strong> Based on catches, stumpings, and fielding effectiveness.<br> - <strong>All-Rounder Score:</strong> A composite metric integrating batting, bowling, and fielding scores.<br><br>",
 
