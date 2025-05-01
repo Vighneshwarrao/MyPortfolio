@@ -53,7 +53,7 @@ const projects = [
     ]
   },
   {
-    title: "Statistical Analysis of India’s All-Time Best Cricket XI",
+    title: "Cricket Analytics: Building the Ultimate All-Time India's XI ",
     tools: ["Python", "BeautifulSoup", "Selenium","Pandas", "NumPy", "Matplotlib", "Seaborn", "Scikit-learn"],
     details: ["<h4>Project Overview:</h4> This project scrapes cricket player stats from <strong>ESPN Cricinfo</strong>, preprocesses the data, performs <strong>Exploratory Data Analysis (EDA)</strong>, and engineers new performance metrics. Using a <strong>weighted scoring system</strong>, it ranks players based on various Key Performance Indicators (KPIs) to construct India's <strong>all-time playing XI</strong> for Test, ODI, and T20I formats.<br><br>",
 
