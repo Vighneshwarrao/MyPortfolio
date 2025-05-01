@@ -72,7 +72,8 @@ const projects = [
       { src: "Assets/project3_img1.png", caption: "Dataset" },
       { src: "Assets/project3_img2.png", caption: "Weighted Scoring System" },
       { src: "Assets/project3_img3.png", caption: "Playing XI" }
-    ]
+    ],
+    github: "https://github.com/Vighneshwarrao/CricketAPI"
   }
 ];
 
