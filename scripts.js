@@ -53,23 +53,25 @@ const projects = [
     ]
   },
   {
-    title: "Cricket Analytics: Building the Ultimate All-Time India's XI ",
-    tools: ["Python", "BeautifulSoup", "Selenium","Pandas", "NumPy", "Matplotlib", "Seaborn", "Scikit-learn"],
-    details: ["<h4>Project Overview:</h4> This project scrapes cricket player stats from <strong>ESPN Cricinfo</strong>, preprocesses the data, performs <strong>Exploratory Data Analysis (EDA)</strong>, and engineers new performance metrics. Using a <strong>weighted scoring system</strong>, it ranks players based on various Key Performance Indicators (KPIs) to construct India's <strong>all-time playing XI</strong> for Test, ODI, and T20I formats.<br><br>",
+     "title": "Cricket Analytics: Building the Ultimate All-Time India's XI",
+  "tools": ["Python", "BeautifulSoup", "Selenium", "Pandas", "NumPy", "FastAPI", "HTML", "CSS", "JavaScript", "Render"],
+  "details": [
+    "<h4>Project Overview:</h4> This project scrapes Indian cricket player statistics from <strong>ESPN Cricinfo</strong>, preprocesses the data, performs <strong>Exploratory Data Analysis (EDA)</strong>, and ranks players using a <strong>custom weighted scoring system</strong>. It then constructs India's <strong>all-time playing XI</strong> for different formats based on user-defined criteria for team composition.<br><br>",
 
-      "<h4>Data Scraping & Preprocessing:</h4> - Used <strong>BeautifulSoup & Selenium</strong> to scrape player statistics (batting, bowling, fielding) from ESPN Cricinfo.<br> - Handled <strong>missing values, duplicate records, and inconsistencies</strong> in scraped data.<br> - Merged different data sources (batting, bowling, and fielding stats) into a structured dataset.<br><br>",
+    "<h4>Data Scraping & Preprocessing:</h4> - Used <strong>BeautifulSoup & Selenium</strong> to scrape player statistics from ESPN Cricinfo.<br> - Cleaned the data using <strong>Pandas and NumPy</strong>, handling missing values and inconsistencies.<br> - Consolidated scraped data into a single, structured format for further analysis.<br><br>",
 
-      "<h4>Feature Engineering:</h4> - Created  custom performance indexes  to better evaluate players:<br> - <strong>Batting Index:</strong> Combines runs, batting average, strike rate, and consistency.<br> - <strong>Bowling Index:</strong> Factors in wickets, bowling average, economy rate, and match impact.<br> - <strong>Fielding Index:</strong> Based on catches, stumpings, and fielding effectiveness.<br> - <strong>All-Rounder Score:</strong> A composite metric integrating batting, bowling, and fielding scores.<br><br>",
+    "<h4>Feature Engineering:</h4> - Designed a <strong>weighted scoring system</strong> to evaluate players based on their international stats.<br> - Assigned scores based on batting, bowling, and all-rounder performance to fairly rank players.<br> - Tailored the scoring to ensure a balance across formats (Test, ODI, T20I).<br><br>",
 
-      "<h4>Exploratory Data Analysis (EDA):</h4> - Used <strong>Matplotlib & Seaborn</strong> to visualize player trends, comparing different eras.<br> - Analyzed correlations between <strong>strike rate & average for batsmen</strong>, and <strong>wickets & economy rate for bowlers</strong>.<br> - Identified <strong>players with high clutch performances</strong> in pressure situations.<br><br>",
+    "<h4>Exploratory Data Analysis (EDA):</h4> - Analyzed key player statistics to understand performance trends and distributions.<br> - Identified standout performers and created visual summaries (optional extension).<br> - Supported the scoring system with data-driven insights.<br><br>",
 
-      "<h4>Player Ranking & Team Selection:</h4> - Developed a  weighted ranking algorithm  to sort players by different metrics.<br> - Categorized players based on playing style (e.g., power hitters, anchor batsmen, aggressive bowlers).<br> - Constructed India's <strong>best XI</strong> for <strong>Test, ODI, and T20I</strong> formats.<br> - Created an  all-format team  considering performance across all game styles.<br><br>",
-      "<h4>Power BI Dashboard:</h4> - Designed an  interactive Power BI dashboard  to visualize and compare player statistics.<br> - Created  filters and slicers  for easy selection based on format, era, and performance metrics.<br> - Integrated  heatmaps, bar charts, and scatter plots  for performance trends.<br> - Provided  drill-down capabilities  to analyze individual players in-depth.<br><br>"
+    "<h4>Player Ranking & Team Selection:</h4> - Ranked players based on the weighted scores across formats.<br> - Allowed user customization for selecting the number of <strong>batters, pacers, and spinners</strong> in the playing XI.<br> - Built a flexible backend using <strong>FastAPI</strong> to generate format-specific teams based on user input.<br><br>",
+
+    "<h4>Web Application & Deployment:</h4> - Deployed the API to <strong>Render</strong> for public access.<br> - Developed a responsive frontend using <strong>HTML, CSS, and JavaScript</strong>.<br> - Connected the frontend to the FastAPI backend to create an interactive web app where users can generate India's best XI by choosing role-based counts.<br><br>"
     ],
     images: [
-      { src: "project3_img1.png", caption: "Dataset" },
-      { src: "project3_img2.png", caption: "Weighted Scoring System" },
-      { src: "project3_img3.png", caption: "Playing XI" }
+      { src: "Assets/project3_img1.png", caption: "Dataset" },
+      { src: "Assets/project3_img2.png", caption: "Weighted Scoring System" },
+      { src: "Assets/project3_img3.png", caption: "Playing XI" }
     ]
   }
 ];
