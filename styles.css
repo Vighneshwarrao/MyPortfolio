@@ -777,6 +777,11 @@ footer {
 }
 
 @media (max-width: 768px) {
+
+    .sidebar{
+        visibility: hidden;
+        opacity: 0;
+    }
     .nav-icon:hover .hover-box {
         visibility: hidden;
         opacity: 0;
@@ -845,6 +850,10 @@ footer {
 }
 
 @media (max-width: 480px) {
+    .sidebar{
+        visibility: hidden;
+        opacity: 0;
+    }
     .nav-icon:hover .hover-box {
         visibility: hidden;
         opacity: 0;
