@@ -14,7 +14,7 @@
 </head>
 
 <body>
-    <div id="particles-js" class="fade-in"></div>
+    <div id="particles-js" ></div>
     <!-- Navbar -->
     <div class="sidebar">
         <a href="#home" class="nav-icon">
@@ -44,7 +44,7 @@
     </div>
 
     <!-- Home Section -->
-    <section id="home" class="home fade-in">
+    <section id="home" class="home">
         <div class="home-content">
             <div class="text-section">
                 <span>Hello,I'm </span>
@@ -104,7 +104,8 @@
     <section id="projects" class="projects fade-in">
         <h2 class="section-title"><span>My </span>Projects</h2>
         <div class="container">
-            <div class="project-card hover-effect">
+            <!-- project cards-->
+            <div class="project-card left">
                 <img src="Assets/project1.jpg" alt="Project 1">
                 <div class="content">
                     <h3>Online Retail Sales Analysis</h3>
@@ -112,7 +113,7 @@
                     <button class="project-btn" data-project-id="0">See My Work</button>
                 </div>
             </div>
-            <div class="project-card hover-effect">
+            <div class="project-card center">
                 <img src="Assets/project2.jpg" alt="Project 2">
                 <div class="content">
                     <h3>IoT Bottleneck Detection</h3>
@@ -120,11 +121,11 @@
                     <button class="project-btn" data-project-id="1">See My Work</button>
                 </div>
             </div>
-            <div class="project-card hover-effect">
+            <div class="project-card right">
                 <img src="Assets/project3.jpg" alt="Project 3">
                 <div class="content">
-                    <h3>Cricket Analytics</h3>
-                    <p> Building the Ultimate All-Time India's XI</p>
+                    <h3>Cricket Analytics </h3>
+                    <p>Building the Ultimate All-Time India's XI</p>
                     <button class="project-btn" data-project-id="2">See My Work</button>
                 </div>
             </div>
@@ -155,20 +156,29 @@
                 </div>
             </div>
             <hr>
-            <div class="git-btn">
-                <a id="github-button" href="#" target="_blank" class="github-btn">
-                    <i class="fab fa-github"></i> View on GitHub
-                </a>
+            <div class="pro-btn">
+                <div class="git-btn">
+                    <a id="github-button" href="#" target="_blank" class="github-btn">
+                        <i class="fab fa-github"></i> View on GitHub
+                    </a>
 
+                </div>
+                <div class="live-btn">
+                    <a id="live-btn" href="#" target="_blank" class="live-btn">
+                        <i class="fa fa-link" aria-hidden="true"></i> Go Live
+                    </a>
+
+                </div>
             </div>
 
+
             <div id="tools-used">
-                <h5>Tools Used:</h5>
+                <h3>🛠️ Tools Used:</h3>
                 <ul id="tools-list">
                     <!-- Tools will be dynamically loaded -->
                 </ul>
 
-                <div id="details">
+                <div id="details" >
                     <ul id="project-details">
                         <!-- Details will be dynamically loaded -->
                     </ul>
@@ -182,7 +192,7 @@
 
 
     <!-- Contact Section -->
-    <section id="contact" class="contact fade-in">
+    <section id="contact" class="contact">
         <h2>Contact <span>Me</span></h2>
         <div class="contact-item">
             <div class="icon">
@@ -255,6 +265,24 @@
             particlesJS.load('particles-js', 'particles.json', function () {
                 console.log("Particles.js successfully loaded.");
             });
+        });
+
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const projectSection = document.querySelector("#projects");
+            const cards = document.querySelectorAll(".project-card");
+
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        cards.forEach(card => card.classList.add("show"));
+                        observer.unobserve(projectSection); // Stop observing after animation
+                    }
+                });
+            }, { threshold: 0.3 });
+
+            observer.observe(projectSection);
         });
 
     </script>
