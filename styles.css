@@ -143,23 +143,20 @@ body {
     flex-wrap: wrap;
     padding: 5rem;
     align-items: center;
-    gap: 2rem;
     text-align: left;
 }
 
 .home-content {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
     width: 100%;
+    gap: 2rem;
     margin-left: 15px;
 }
 
 .text-section {
+    width: 50%;
     flex: 2;
-}
-
-.image-section{
-    flex: 1;
 }
 
 .text-section h1 {
@@ -184,6 +181,9 @@ body {
     font-size: 1.5rem;
 }
 
+.image-section{
+    flex: 1;
+}
 .image-section img {
     max-width: 100%;
     border-radius: 10px;
@@ -374,6 +374,32 @@ body {
     padding: 1rem;
     transition: transform 0.3s;
 }
+.project-card {
+    opacity: 0;
+    transition: all 1s ease-out;
+}
+
+/* Left card - Start far left */
+.project-card.left {
+    transform: translateX(-50vw);
+}
+
+/* Right card - Start far right */
+.project-card.right {
+    transform: translateX(50vw);
+}
+
+/* Center card - Start from very bottom */
+.project-card.center {
+    transform: translateY(50vh);
+}
+
+/* When visible, smoothly bring them into place */
+.project-card.show {
+    opacity: 1;
+    transform: translateX(0) translateY(0);
+}
+
 
 .project-card:hover {
     transform: scale(1.1);
@@ -386,7 +412,7 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color: #1a1a1a62;
     /* Popup background color */
     z-index: 1000;
     align-items: center;
@@ -448,26 +474,36 @@ body {
 }
 
 #tools-used {
-    text-align: left;
-    padding: 15px;
-    background: #121212;
-    color: white;
-    font-size: 1.4rem;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 10px 30px;
+    background-color: #121212;
+    border-radius: 10px;
+    margin-bottom: 50px;
+    box-shadow: 0 0 10px rgba(0,255,255,0.05);
 }
+#tools-used h3 {
+    margin-bottom: 23px;
+  }
 
 #tools-list {
-    font-size: 1rem;
-    list-style-type: none;
-    padding-left: 10px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 35px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
 }
 
 #tools-list li {
-    margin-bottom: 5px;
+    background-color: #1e1e1e;
+    padding: 9px 4px;
+    border-radius: 8px;
+    text-align: center;
+    color: #ffffff;
     font-weight: 300;
 }
 
 #details {
+    margin-top: 50px;
     text-align: left;
     padding: 15px;
     background: #121212;
@@ -552,11 +588,45 @@ body {
     overflow: hidden;
     text-align: center;
 }
+/* pro btn*/
+.pro-btn{
+    display: flex;
+    justify-content:last baseline
+}
+/* git btn*/
 .git-btn:hover a{
     background-color: #0366d6;
 }
 
 .git-btn:active a{
+    transform: translateY(1px);
+}
+
+/* go live btn */
+.live-btn {
+    width: 20%;
+    margin: 23px -75px;
+}
+
+.live-btn a {
+    width: 150px;
+    margin: 0.5rem;
+    background: #4facfe;
+    color: #fff;
+    padding: 0.8rem 0.5rem;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background 0.3s;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    text-align: center;
+}
+.live-btn:hover a{
+    background-color: #0366d6;
+}
+
+.live-btn:active a{
     transform: translateY(1px);
 }
 
@@ -779,9 +849,7 @@ footer {
         visibility: hidden;
         opacity: 0;
     }
-#particles-js{
-    height:170%;
-}
+
     .text-section h1 {
         font-size: 1.4rem;
     }
