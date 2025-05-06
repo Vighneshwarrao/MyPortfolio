@@ -8,17 +8,18 @@
 }
 
 body {
-
     line-height: 1.6;
     color: #fff;
     background-color: #121212;
 }
+
 #particles-js {
     position: absolute;
     width: 100%;
     height: 138%;
     z-index: -1;
 }
+
 /* ===== LOADING SCREEN (PRELOADER) ===== */
 /* ===== FADE-IN ANIMATIONS ON SCROLL ===== */
 .fade-in {
@@ -31,8 +32,6 @@ body {
     opacity: 1;
     transform: translateY(0);
 }
-
-
 
 .container {
     width: 90%;
@@ -69,12 +68,11 @@ body {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     text-decoration: none;
-    opacity: 0; /* Start hidden */
-    transform: translateY(20px); /* Start slightly lower */
+    opacity: 0;
+    transform: translateY(20px);
     animation: fadeInUp 1s forwards;
 }
 
-/* Apply animation delay for each icon */
 .nav-icon:nth-child(1) {
     animation-delay: 0.3s;
 }
@@ -88,7 +86,6 @@ body {
     animation-delay: 1.2s;
 }
 
-/* Fade-in animation */
 @keyframes fadeInUp {
     from {
         opacity: 0;
@@ -222,7 +219,6 @@ body {
 
 .home-buttons .social a {
     text-decoration: none;
-
 }
 
 .home-buttons .social {
@@ -241,8 +237,6 @@ body {
 .home-buttons .btn:hover {
     background: #00f2fe;
 }
-
-
 
 /* About Section */
 .about {
@@ -274,12 +268,10 @@ body {
     margin: 0 auto;
 }
 
-
 /* Projects Section */
 .projects span {
     font-family: 'Pacifico', cursive;
     font-weight: normal;
-
 }
 
 .projects {
@@ -292,7 +284,6 @@ body {
     margin-bottom: 20px;
     position: relative;
     display: inline-block;
-
 }
 
 .projects h2::after {
@@ -304,7 +295,6 @@ body {
     bottom: -10px;
     left: 50%;
     transform: translateX(-50%);
-
 }
 
 .projects .container {
@@ -317,7 +307,6 @@ body {
 
 .project-card {
     background: rgba(30, 30, 30, 0.6);
-    ;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     height: 500px;
@@ -329,7 +318,6 @@ body {
 .project-card img {
     width: 100%;
     height: auto;
-
 }
 
 .project-card .content {
@@ -358,12 +346,10 @@ body {
     border-radius: 4px;
     font-size: 14px;
     border: none;
-
 }
 
 .project-card .content .project-btn:hover {
     background-color: #00f2fe;
-
 }
 
 /*Project Card Hover Effect */
@@ -400,7 +386,6 @@ body {
     transform: translateX(0) translateY(0);
 }
 
-
 .project-card:hover {
     transform: scale(1.1);
 }
@@ -413,7 +398,6 @@ body {
     width: 100%;
     height: 100%;
     background-color: #1a1a1a62;
-    /* Popup background color */
     z-index: 1000;
     align-items: center;
     justify-content: center;
@@ -423,7 +407,6 @@ body {
 #popup-content {
     position: relative;
     background-color: #121212;
-    /* Content background color */
     width: 80%;
     height: 90%;
     border-radius: 10px;
@@ -439,7 +422,6 @@ body {
         opacity: 0;
         transform: translateY(20px);
     }
-
     to {
         opacity: 1;
         transform: translateY(0);
@@ -454,7 +436,6 @@ body {
     right: 190px;
     font-size: 2rem;
     color: #fff;
-    /* Secondary color */
     cursor: pointer;
     transition: transform 0.2s ease-in-out;
 }
@@ -470,7 +451,6 @@ body {
     padding: 15px;
     color: #00f2fe;
     text-transform: uppercase;
-
 }
 
 #tools-used {
@@ -480,9 +460,10 @@ body {
     margin-bottom: 50px;
     box-shadow: 0 0 10px rgba(0,255,255,0.05);
 }
+
 #tools-used h3 {
     margin-bottom: 23px;
-  }
+}
 
 #tools-list {
     display: grid;
@@ -535,7 +516,6 @@ body {
     justify-content: center;
 }
 
-
 #details {
     font-size: 1rem;
     padding: 15px;
@@ -566,7 +546,6 @@ body {
 .carousel-control-prev,
 .carousel-control-next {
     filter: drop-shadow(2px 2px 5px rgba(0, 0, 0, 0.5));
-    /* Add shadow for better contrast */
 }
 
 .git-btn {
@@ -588,11 +567,13 @@ body {
     overflow: hidden;
     text-align: center;
 }
+
 /* pro btn*/
 .pro-btn{
     display: flex;
     justify-content:last baseline
 }
+
 /* git btn*/
 .git-btn:hover a{
     background-color: #0366d6;
@@ -622,6 +603,7 @@ body {
     overflow: hidden;
     text-align: center;
 }
+
 .live-btn:hover a{
     background-color: #0366d6;
 }
@@ -680,19 +662,16 @@ body {
 .skills span {
     font-family: 'Pacifico', cursive;
     font-weight: normal;
-
 }
 
 /* Contact Section */
 .contact span {
     font-family: 'Pacifico', cursive;
     font-weight: normal;
-
 }
 
 .contact {
     padding: 1.5rem 0;
-    /* Reduced height */
     background: url('Assets/background.jpg');
     color: #333;
     text-align: center;
@@ -750,7 +729,6 @@ body {
     color: #047dff;
 }
 
-
 .contact-info {
     text-align: left;
 }
@@ -767,7 +745,6 @@ body {
     color: #fff;
 }
 
-
 /* Footer */
 footer {
     height: 20px;
@@ -777,83 +754,129 @@ footer {
 }
 
 @media (max-width: 768px) {
+    body {
+        overflow-x: hidden;
+    }
 
-    .sidebar a{
+    .container {
+        max-width: 100%;
+        padding: 0 1rem;
+    }
+
+    .sidebar, .nav-icon:hover .hover-box {
         visibility: hidden;
         opacity: 0;
     }
-    .nav-icon:hover .hover-box {
-        visibility: hidden;
-        opacity: 0;
-    }
 
-    .text-section span {
-        font-size: 3rem;
-    }
-
-    .text-section p {
-        font-size: 1rem;
-    }
-
-    .home-buttons .social {
-        padding-left: 45px;
+    .home {
+        padding: 2rem 1rem;
     }
 
     .home-content {
         flex-direction: column;
-        text-align: center;
-        margin-top: -30px;
+        align-items: center;
+        margin: 0;
+        gap: 1rem;
     }
 
-    .about {
-        padding-top: 0rem;
+    .text-section, .image-section {
+        width: 100%;
+        text-align: center;
     }
 
     .text-section h1 {
-        font-size: 1.4rem;
+        font-size: 1.8rem;
     }
 
-    .image-section img {
-        max-width: 100%;
+    .text-section span {
+        font-size: 2.5rem;
+    }
+
+    .text-section p {
+        font-size: 1rem;
+        margin: 0;
+        width: 100%;
+    }
+
+    .home-buttons {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 1rem 0;
+    }
+
+    .home-buttons .social {
+        padding: 1rem 0;
+        justify-content: center;
+        width: 100%;
+    }
+
+    .about {
+        padding: 3rem 1rem;
     }
 
     .about-content {
         padding: 1rem;
     }
 
-    .about-content p {
-        padding: 1rem;
+    .skills {
+        padding: 3rem 1rem;
     }
 
-    .skills {
-        padding: 4rem 1rem;
+    .projects {
+        padding: 3rem 1rem;
     }
 
     .project-card {
-        width: 100%;
-        height: 380px;
+        max-width: 100%;
+        height: auto;
+        min-height: 350px;
     }
 
     #popup-content {
-        display: none;
+        max-width: 95%;
+        height: 85%;
+        display: flex;
+    }
+
+    #popup-title {
+        font-size: 1.5rem;
+    }
+
+    .close-btn {
+        top: 15px;
+        right: 15px;
     }
 
     .carousel-inner {
-        height: 225px;
-        width: 100%;
-        margin-left: 0;
+        max-width: 100%;
+        height: 300px;
     }
 
     .carousel-caption {
-        top: 147px;
+        bottom: 15px;
+        font-size: 0.8rem;
+    }
+
+    .pro-btn {
+        flex-direction: column;
+        align-items: flex-start;
+        padding-left: 1rem;
+    }
+
+    .git-btn, .live-btn {
+        width: auto;
+        margin: 0.5rem;
+    }
+
+    .contact {
+        padding: 1rem;
+        height: auto;
+        min-height: 250px;
     }
 }
 
 @media (max-width: 480px) {
-    .sidebar a{
-        visibility: hidden;
-        opacity: 0;
-    }
     .nav-icon:hover .hover-box {
         visibility: hidden;
         opacity: 0;
@@ -863,34 +886,31 @@ footer {
         font-size: 1.4rem;
     }
 
-    .text-section p {
-        font-size: 1rem;
+    .text-section span {
+        font-size: 2rem;
     }
 
-    .nav-links a {
+    .text-section p {
+        font-size: 0.9rem;
+    }
+
+    #popup-title {
         font-size: 1.2rem;
     }
 
-    #popup-content {
-        display: block;
-    }
-
     .carousel-inner {
-        margin-left: 0;
-        width: 100%;
-    }
-
-    .close-btn {
-        right: 15px;
-        top: 15px;
+        height: 250px;
     }
 
     .carousel-caption {
-        top: 180px;
+        bottom: 10px;
+        font-size: 0.7rem;
     }
 
     .carousel-control-prev-icon,
     .carousel-control-next-icon {
-        background-color: rgba(7, 0, 0, 0.959);
+        width: 30px;
+        height: 30px;
+        background-color: rgba(0, 0, 0, 0.8);
     }
 }
