@@ -53,7 +53,7 @@ const projects = [
     ]
   },
   {
-    "title": "Cricket Analytics: Building the Ultimate All-Time India's XI",
+    "title": "Cricket Analytics",
   "tools": ["Python", "BeautifulSoup", "Selenium", "Pandas", "NumPy", "FastAPI", "HTML", "CSS", "JavaScript", "Render","Github"],
   "details": [
     "<h2>📌 Project Overview:</h2> This project scrapes Indian cricket player statistics from <strong>ESPN Cricinfo</strong>, preprocesses the data, performs <strong>Exploratory Data Analysis (EDA)</strong>, and ranks players using a <strong>custom weighted scoring system</strong>. It then constructs India's <strong>all-time playing XI</strong> for different formats based on user-defined criteria for team composition.<br><br>",
