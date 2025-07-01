@@ -176,7 +176,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 { src: "Assets/project2_img2.png", caption: "t-test Summary Output" },
                 { src: "Assets/project2_img3.png", caption: "Chi-square Visualization" },
             ],
-            github: "https://github.com/Vighneshwarrao/ABtestingAPI",
+            github: "https://github.com/Vighneshwarrao/A-BTestingPlatform",
             live: "https://vighneshwarrao.github.io/ABplatform/"
         },
         {
