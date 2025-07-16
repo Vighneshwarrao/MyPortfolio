@@ -45,21 +45,31 @@ document.addEventListener('DOMContentLoaded', function () {
     // Active navigation link based on scroll position
     const sections = document.querySelectorAll('section[id]');
 
-    function highlightNavLink() {
-        const scrollY = window.pageYOffset;
+function highlightNavLink() {
+    const scrollY = window.pageYOffset;
 
-        sections.forEach(section => {
-            const sectionHeight = section.offsetHeight;
-            const sectionTop = section.offsetTop - 100;
-            const sectionId = section.getAttribute('id');
+    let currentSectionId = '';
 
-            if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
-                document.querySelector('.nav-link[href*=' + sectionId + ']').classList.add('active');
-            } else {
-                document.querySelector('.nav-link[href*=' + sectionId + ']').classList.remove('active');
-            }
-        });
-    }
+    sections.forEach((section) => {
+        const sectionTop = section.offsetTop - 150; // Account for header height
+        const sectionHeight = section.offsetHeight;
+
+        if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
+            currentSectionId = section.getAttribute('id');
+        }
+    });
+
+    navLinksItems.forEach((link) => {
+        const href = link.getAttribute('href').slice(1); // remove '#'
+
+        if (href === currentSectionId) {
+            link.classList.add('active');
+        } else {
+            link.classList.remove('active');
+        }
+    });
+}
+
 
     window.addEventListener('scroll', highlightNavLink);
 
@@ -113,7 +123,7 @@ document.addEventListener('DOMContentLoaded', function () {
             card.classList.add('animate-on-scroll');
             card.style.animationDelay = `${index * 0.2}s`;
         });
-        
+
         // Blog cards animation
         const blogCards = document.querySelectorAll('.blog-card');
         blogCards.forEach((card, index) => {
@@ -187,6 +197,7 @@ document.addEventListener('DOMContentLoaded', function () {
             live: "https://vighneshwarrao.github.io/ABplatform/"
         },
         {
+
             title: "Cricket Analytics",
             tools: ["Python", "BeautifulSoup", "Selenium", "Pandas", "NumPy", "FastAPI", "HTML", "CSS", "JavaScript", "Render", "Github"],
             details: [
@@ -209,7 +220,32 @@ document.addEventListener('DOMContentLoaded', function () {
             ],
             github: "https://github.com/Vighneshwarrao/cricket-analytics",
             live: "https://vighneshwarrao.github.io/CricketTeam/"
+        },
+        {
+            title: "Bangalore House Price Prediction",
+            tools: ["Python", "Pandas", "NumPy", "Scikit-learn", "FastAPI", "HTML", "CSS", "JavaScript", "GitHub Pages", "Render"],
+            details: [
+                "<h2>📌 Project Overview:</h2> This full-stack ML project predicts house prices in Bangalore based on user-input features like location, square footage, BHK, and more. It uses a cleaned dataset from <strong>Kaggle</strong>, applies rigorous data preprocessing, trains a <strong>Linear Regression model</strong>, and deploys it with a responsive frontend and backend API.<br><br>",
+
+                "<h4>🧹 Data Cleaning & Preprocessing:</h4> - Cleaned raw data from <strong>Kaggle’s Bengaluru House Price Dataset</strong>.<br> - Converted textual fields like size to numerical values.<br> - Handled missing data and removed inconsistent or extreme entries.<br> - Computed <strong>price per square foot</strong> and filtered outliers using statistical techniques.<br><br>",
+
+                "<h4>🧬 Feature Engineering & Encoding:</h4> - Performed <strong>one-hot encoding</strong> on 'location'.<br> - Applied <strong>label encoding</strong> for 'area_type'.<br> - Selected relevant numerical and categorical variables for model training.<br><br>",
+
+                "<h4>📈 Model Training & Evaluation:</h4> - Used <strong>Linear Regression</strong> from Scikit-learn.<br> - Split dataset using <strong>train_test_split</strong> (80% train, 20% test).<br> - Achieved an <strong>R² Score of 84%</strong> and a low RMSE.<br> - Saved the model as <code>model.pkl</code> and feature metadata in <code>columns.json</code>.<br><br>",
+
+                "<h4>💻 FastAPI Backend:</h4> - Created a backend using <strong>FastAPI</strong>.<br> - Loaded model and column data at runtime.<br> - Exposed a <code>/predict</code> endpoint that takes user input and returns predicted price rounded to 2 decimal places.<br><br>",
+
+                "<h4>🌐 Frontend Integration & Deployment:</h4> - Developed a simple, intuitive UI using <strong>HTML, CSS, and JavaScript</strong>.<br> - Inputs include: <code>sqft, BHK, bathrooms, area type, location</code>.<br> - Dynamically sends input to FastAPI backend and renders the result in INR.<br> - Deployed frontend on <strong>GitHub Pages</strong> and backend on <strong>Render</strong>.<br><br>"
+            ],
+            images: [
+                { src: "Assets/project4_img1.png", caption: "Raw Dataset from Kaggle" },
+                { src: "Assets/project4_img2.png", caption: "Outlier Removal & Feature Engineering" },
+                { src: "Assets/project4_img3.png", caption: "Frontend Interface & API Integration" }
+            ],
+            github: "https://github.com/Vighneshwarrao/House-Prediction",
+            live: "https://vighneshwarrao.github.io/Bangalore-House-Prediction/"
         }
+
     ];
 
     // Initialize Swiper
@@ -353,25 +389,25 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Add CSS animation class
     document.body.classList.add('loaded');
-    
+
     // Medium Blog Integration
     const mediumBlogsContainer = document.getElementById('medium-blogs-container');
     const mediumUsername = 'vighneshwarraobandaru';
     const rssUrl = `https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/@${mediumUsername}`;
-    
+
     // Fetch Medium blog posts
     function fetchMediumPosts() {
         if (!mediumBlogsContainer) return;
-        
+
         fetch(rssUrl)
             .then(response => response.json())
             .then(data => {
                 // Clear loading indicator
                 mediumBlogsContainer.innerHTML = '';
-                
+
                 if (data.status === 'ok') {
                     const items = data.items;
-                    
+
                     if (items.length === 0) {
                         // No blog posts found
                         mediumBlogsContainer.innerHTML = `
@@ -384,7 +420,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         `;
                         return;
                     }
-                    
+
                     // Create blog cards for each post
                     items.forEach(item => {
                         // Extract first image from content or use default
@@ -394,7 +430,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         if (match && match[1]) {
                             imgUrl = match[1];
                         }
-                        
+
                         // Format date
                         const pubDate = new Date(item.pubDate);
                         const formattedDate = pubDate.toLocaleDateString('en-US', {
@@ -402,11 +438,11 @@ document.addEventListener('DOMContentLoaded', function () {
                             month: 'long',
                             day: 'numeric'
                         });
-                        
+
                         // Create excerpt by removing HTML tags and limiting length
                         let excerpt = item.content.replace(/<[^>]*>/g, '');
                         excerpt = excerpt.substring(0, 150) + (excerpt.length > 150 ? '...' : '');
-                        
+
                         // Create blog card
                         const blogCard = document.createElement('div');
                         blogCard.className = 'blog-card animate-on-scroll';
@@ -424,14 +460,14 @@ document.addEventListener('DOMContentLoaded', function () {
                                 <a href="${item.link}" target="_blank" class="blog-link">Read More</a>
                             </div>
                         `;
-                        
+
                         mediumBlogsContainer.appendChild(blogCard);
                     });
-                    
+
                     // Re-run animation classes
                     addAnimationClasses();
                     animateOnScroll();
-                    
+
                 } else {
                     // Error fetching blog posts
                     mediumBlogsContainer.innerHTML = `
@@ -456,7 +492,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 `;
             });
     }
-    
+
     // Initialize Medium blog posts
     fetchMediumPosts();
 });
