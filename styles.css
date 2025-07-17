@@ -948,6 +948,12 @@ section {
     margin: 0 auto;
 }
 
+.view-all-blogs {
+    text-align: center;
+    margin-top: 20px;
+}
+
+
 /* ===== CONTACT SECTION ===== */
 .contact {
     background-color: var(--bg-color);

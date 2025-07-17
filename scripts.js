@@ -45,30 +45,30 @@ document.addEventListener('DOMContentLoaded', function () {
     // Active navigation link based on scroll position
     const sections = document.querySelectorAll('section[id]');
 
-function highlightNavLink() {
-    const scrollY = window.pageYOffset;
+    function highlightNavLink() {
+        const scrollY = window.pageYOffset;
 
-    let currentSectionId = '';
+        let currentSectionId = '';
 
-    sections.forEach((section) => {
-        const sectionTop = section.offsetTop - 150; // Account for header height
-        const sectionHeight = section.offsetHeight;
+        sections.forEach((section) => {
+            const sectionTop = section.offsetTop - 150; // Account for header height
+            const sectionHeight = section.offsetHeight;
 
-        if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
-            currentSectionId = section.getAttribute('id');
-        }
-    });
+            if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
+                currentSectionId = section.getAttribute('id');
+            }
+        });
 
-    navLinksItems.forEach((link) => {
-        const href = link.getAttribute('href').slice(1); // remove '#'
+        navLinksItems.forEach((link) => {
+            const href = link.getAttribute('href').slice(1); // remove '#'
 
-        if (href === currentSectionId) {
-            link.classList.add('active');
-        } else {
-            link.classList.remove('active');
-        }
-    });
-}
+            if (href === currentSectionId) {
+                link.classList.add('active');
+            } else {
+                link.classList.remove('active');
+            }
+        });
+    }
 
 
     window.addEventListener('scroll', highlightNavLink);
@@ -422,16 +422,17 @@ function highlightNavLink() {
                     }
 
                     // Create blog cards for each post
-                    items.forEach(item => {
-                        // Extract first image from content or use default
-                        let imgUrl = 'https://miro.medium.com/max/1200/1*jfdwtvU6V6g99q3G7gq7dQ.png'; // Default Medium image
+                    // Limit blogs to the latest 6
+                    const limitedItems = items.slice(0, 6);
+
+                    limitedItems.forEach(item => {
+                        let imgUrl = 'https://miro.medium.com/max/1200/1*jfdwtvU6V6g99q3G7gq7dQ.png'; // default fallback
                         const imgRegex = /<img[^>]+src="([^">]+)"/g;
                         const match = imgRegex.exec(item.content);
                         if (match && match[1]) {
                             imgUrl = match[1];
                         }
 
-                        // Format date
                         const pubDate = new Date(item.pubDate);
                         const formattedDate = pubDate.toLocaleDateString('en-US', {
                             year: 'numeric',
@@ -439,30 +440,38 @@ function highlightNavLink() {
                             day: 'numeric'
                         });
 
-                        // Create excerpt by removing HTML tags and limiting length
                         let excerpt = item.content.replace(/<[^>]*>/g, '');
                         excerpt = excerpt.substring(0, 150) + (excerpt.length > 150 ? '...' : '');
 
-                        // Create blog card
                         const blogCard = document.createElement('div');
                         blogCard.className = 'blog-card animate-on-scroll';
                         blogCard.innerHTML = `
-                            <div class="blog-image">
-                                <img src="${imgUrl}" alt="${item.title}">
-                            </div>
-                            <div class="blog-content">
-                                <div class="blog-date">
-                                    <i class="far fa-calendar-alt"></i>
-                                    <span>${formattedDate}</span>
-                                </div>
-                                <h3 class="blog-title">${item.title}</h3>
-                                <p class="blog-excerpt">${excerpt}</p>
-                                <a href="${item.link}" target="_blank" class="blog-link">Read More</a>
-                            </div>
-                        `;
-
+        <div class="blog-image">
+            <img src="${imgUrl}" alt="${item.title}">
+        </div>
+        <div class="blog-content">
+            <div class="blog-date">
+                <i class="far fa-calendar-alt"></i>
+                <span>${formattedDate}</span>
+            </div>
+            <h3 class="blog-title">${item.title}</h3>
+            <p class="blog-excerpt">${excerpt}</p>
+            <a href="${item.link}" target="_blank" class="blog-link">Read More</a>
+        </div>
+    `;
                         mediumBlogsContainer.appendChild(blogCard);
                     });
+
+                    // ✨ Add a "View All Blogs" button
+                    const viewAllBtn = document.createElement('div');
+                    viewAllBtn.className = 'view-all-blogs';
+                    viewAllBtn.innerHTML = `
+    <a href="https://medium.com/@${mediumUsername}" target="_blank" class="primary-btn" style="margin-top: 20px; display: inline-block;">
+        <i class="fa-solid fa-blog"></i> View All Blogs on Medium →
+    </a>
+`;
+                    mediumBlogsContainer.appendChild(viewAllBtn);
+
 
                     // Re-run animation classes
                     addAnimationClasses();
