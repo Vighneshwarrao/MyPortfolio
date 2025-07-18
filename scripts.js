@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
     const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
     const mobileBottomNavItems = document.querySelectorAll('.mobile-bottom-nav-item');
-    
+
     // Desktop Navigation
     const hamburger = document.querySelector('.hamburger');
     const navLinks = document.querySelector('.nav-links');
@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Open mobile navigation when menu button is clicked
     if (mobileMenuBtn) {
-        mobileMenuBtn.addEventListener('click', function(e) {
+        mobileMenuBtn.addEventListener('click', function (e) {
             e.preventDefault();
             if (mobileNav) {
                 mobileNav.classList.add('active');
@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Close mobile navigation
     if (mobileNavClose) {
-        mobileNavClose.addEventListener('click', function() {
+        mobileNavClose.addEventListener('click', function () {
             if (mobileNav) {
                 mobileNav.classList.remove('active');
                 document.body.style.overflow = ''; // Re-enable scrolling
@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Close mobile navigation when clicking overlay
     if (mobileNavOverlay) {
-        mobileNavOverlay.addEventListener('click', function() {
+        mobileNavOverlay.addEventListener('click', function () {
             if (mobileNav) {
                 mobileNav.classList.remove('active');
                 document.body.style.overflow = ''; // Re-enable scrolling
@@ -55,15 +55,15 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Close mobile navigation when clicking a link
     mobileNavLinks.forEach(link => {
-        link.addEventListener('click', function() {
+        link.addEventListener('click', function () {
             if (mobileNav) {
                 mobileNav.classList.remove('active');
                 document.body.style.overflow = ''; // Re-enable scrolling
-                
+
                 // Update active state in mobile navigation
                 mobileNavLinks.forEach(item => item.classList.remove('active'));
                 this.classList.add('active');
-                
+
                 // Update active state in bottom navigation
                 const href = this.getAttribute('href').slice(1); // remove '#'
                 mobileBottomNavItems.forEach(item => {
@@ -76,15 +76,34 @@ document.addEventListener('DOMContentLoaded', function () {
                 });
             }
         });
+       document.addEventListener('click', function (event) {
+    const mobileNav = document.querySelector('.mobile-nav');
+    const navContainer = document.querySelector('.mobile-nav-container');
+    const isActive = mobileNav.classList.contains('active');
+
+    if (
+        isActive &&
+        !navContainer.contains(event.target) &&
+        !event.target.closest('.mobile-menu-btn')
+    ) {
+        mobileNav.classList.add('closing');
+        setTimeout(() => {
+            mobileNav.classList.remove('active', 'closing');
+            document.body.style.overflow = '';
+        }, 400);
+    }
+});
+
+
     });
-    
+
     // Update active state in bottom navigation when clicking a bottom nav item
     mobileBottomNavItems.forEach(item => {
         if (!item.classList.contains('mobile-menu-btn')) {
-            item.addEventListener('click', function() {
+            item.addEventListener('click', function () {
                 mobileBottomNavItems.forEach(navItem => navItem.classList.remove('active'));
                 this.classList.add('active');
-                
+
                 // Update active state in mobile navigation
                 const href = this.getAttribute('href');
                 if (href && href !== '#') {
@@ -158,7 +177,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 link.classList.remove('active');
             }
         });
-        
+
         // Update mobile nav links
         mobileNavLinks.forEach((link) => {
             const href = link.getAttribute('href').slice(1); // remove '#'
@@ -169,14 +188,14 @@ document.addEventListener('DOMContentLoaded', function () {
                 link.classList.remove('active');
             }
         });
-        
+
         // Update mobile bottom nav
         mobileBottomNavItems.forEach((item) => {
             if (!item.classList.contains('mobile-menu-btn')) {
                 const href = item.getAttribute('href');
                 if (href && href !== '#') {
                     const sectionId = href.slice(1);
-                    
+
                     if (sectionId === currentSectionId) {
                         item.classList.add('active');
                     } else {
@@ -383,6 +402,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Load project data into the modal
     function loadProjectData(projectId) {
+        document.body.classList.add('modal-open');
+
         const project = projects[projectId];
 
         // Set project title
@@ -475,6 +496,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Close popup
     if (closeBtn && popupContainer) {
+        document.body.classList.remove('modal-open');
         closeBtn.addEventListener('click', closePopup);
         popupContainer.addEventListener('click', (e) => {
             if (e.target === popupContainer) closePopup();
@@ -607,7 +629,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     mediumBlogsContainer.appendChild(refreshBtn);
 
                     // Add event listener to refresh button
-                    document.getElementById('refresh-blogs').addEventListener('click', function() {
+                    document.getElementById('refresh-blogs').addEventListener('click', function () {
                         fetchMediumPosts();
                     });
 
@@ -628,9 +650,9 @@ document.addEventListener('DOMContentLoaded', function () {
                             </button>
                         </div>
                     `;
-                    
+
                     // Add event listener to refresh button
-                    document.getElementById('refresh-blogs').addEventListener('click', function() {
+                    document.getElementById('refresh-blogs').addEventListener('click', function () {
                         fetchMediumPosts();
                     });
                 }
@@ -648,9 +670,9 @@ document.addEventListener('DOMContentLoaded', function () {
                         </button>
                     </div>
                 `;
-                
+
                 // Add event listener to refresh button
-                document.getElementById('refresh-blogs').addEventListener('click', function() {
+                document.getElementById('refresh-blogs').addEventListener('click', function () {
                     fetchMediumPosts();
                 });
             });
@@ -658,7 +680,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Initialize Medium blog posts
     fetchMediumPosts();
-    
+
     // Call highlightNavLink on page load to set initial active states
     highlightNavLink();
 });

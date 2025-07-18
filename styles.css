@@ -240,6 +240,7 @@ section {
     justify-content: space-between;
     align-items: center;
     margin-bottom: 30px;
+    margin-left: 190px;
     padding-bottom: 15px;
     border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 }
@@ -1475,6 +1476,22 @@ section {
 #project-details li {
     margin-bottom: 20px;
 }
+/* Lock background scroll when modal is open */
+body.modal-open {
+  overflow: hidden;
+}
+
+/* Allow only modal content to scroll */
+#popup-content {
+  max-height: 90vh;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+/* Optional: prevent touch-based scroll bubbling */
+#popup-container {
+  touch-action: none;
+}
 
 /* ===== FOOTER ===== */
 .footer {
@@ -1543,6 +1560,9 @@ section {
     opacity: 1;
     visibility: visible;
   }
+}
+.mobile-nav.closing .mobile-nav-container {
+    right: -300px; /* Slide it out */
 }
 
 
