@@ -8,12 +8,101 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
-    // Navigation
+    // Modern Mobile Navigation
+    const mobileNav = document.querySelector('.mobile-nav');
+    const mobileNavClose = document.querySelector('.mobile-nav-close');
+    const mobileNavOverlay = document.querySelector('.mobile-nav-overlay');
+    const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+    const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+    const mobileBottomNavItems = document.querySelectorAll('.mobile-bottom-nav-item');
+    
+    // Desktop Navigation
     const hamburger = document.querySelector('.hamburger');
     const navLinks = document.querySelector('.nav-links');
     const navLinksItems = document.querySelectorAll('.nav-link');
     const header = document.querySelector('.header');
 
+    // Open mobile navigation when menu button is clicked
+    if (mobileMenuBtn) {
+        mobileMenuBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            if (mobileNav) {
+                mobileNav.classList.add('active');
+                document.body.style.overflow = 'hidden'; // Prevent scrolling
+            }
+        });
+    }
+
+    // Close mobile navigation
+    if (mobileNavClose) {
+        mobileNavClose.addEventListener('click', function() {
+            if (mobileNav) {
+                mobileNav.classList.remove('active');
+                document.body.style.overflow = ''; // Re-enable scrolling
+            }
+        });
+    }
+
+    // Close mobile navigation when clicking overlay
+    if (mobileNavOverlay) {
+        mobileNavOverlay.addEventListener('click', function() {
+            if (mobileNav) {
+                mobileNav.classList.remove('active');
+                document.body.style.overflow = ''; // Re-enable scrolling
+            }
+        });
+    }
+
+    // Close mobile navigation when clicking a link
+    mobileNavLinks.forEach(link => {
+        link.addEventListener('click', function() {
+            if (mobileNav) {
+                mobileNav.classList.remove('active');
+                document.body.style.overflow = ''; // Re-enable scrolling
+                
+                // Update active state in mobile navigation
+                mobileNavLinks.forEach(item => item.classList.remove('active'));
+                this.classList.add('active');
+                
+                // Update active state in bottom navigation
+                const href = this.getAttribute('href').slice(1); // remove '#'
+                mobileBottomNavItems.forEach(item => {
+                    const itemHref = item.getAttribute('href');
+                    if (itemHref && itemHref.slice(1) === href) {
+                        item.classList.add('active');
+                    } else {
+                        item.classList.remove('active');
+                    }
+                });
+            }
+        });
+    });
+    
+    // Update active state in bottom navigation when clicking a bottom nav item
+    mobileBottomNavItems.forEach(item => {
+        if (!item.classList.contains('mobile-menu-btn')) {
+            item.addEventListener('click', function() {
+                mobileBottomNavItems.forEach(navItem => navItem.classList.remove('active'));
+                this.classList.add('active');
+                
+                // Update active state in mobile navigation
+                const href = this.getAttribute('href');
+                if (href && href !== '#') {
+                    const sectionId = href.slice(1);
+                    mobileNavLinks.forEach(link => {
+                        const linkHref = link.getAttribute('href');
+                        if (linkHref && linkHref.slice(1) === sectionId) {
+                            link.classList.add('active');
+                        } else {
+                            link.classList.remove('active');
+                        }
+                    });
+                }
+            });
+        }
+    });
+
+    // Desktop Navigation (keep existing functionality)
     if (hamburger && navLinks) {
         hamburger.addEventListener('click', function () {
             hamburger.classList.toggle('active');
@@ -59,6 +148,7 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
 
+        // Update desktop nav links
         navLinksItems.forEach((link) => {
             const href = link.getAttribute('href').slice(1); // remove '#'
 
@@ -68,8 +158,34 @@ document.addEventListener('DOMContentLoaded', function () {
                 link.classList.remove('active');
             }
         });
-    }
+        
+        // Update mobile nav links
+        mobileNavLinks.forEach((link) => {
+            const href = link.getAttribute('href').slice(1); // remove '#'
 
+            if (href === currentSectionId) {
+                link.classList.add('active');
+            } else {
+                link.classList.remove('active');
+            }
+        });
+        
+        // Update mobile bottom nav
+        mobileBottomNavItems.forEach((item) => {
+            if (!item.classList.contains('mobile-menu-btn')) {
+                const href = item.getAttribute('href');
+                if (href && href !== '#') {
+                    const sectionId = href.slice(1);
+                    
+                    if (sectionId === currentSectionId) {
+                        item.classList.add('active');
+                    } else {
+                        item.classList.remove('active');
+                    }
+                }
+            }
+        });
+    }
 
     window.addEventListener('scroll', highlightNavLink);
 
@@ -227,7 +343,7 @@ document.addEventListener('DOMContentLoaded', function () {
             details: [
                 "<h2>📌 Project Overview:</h2> This full-stack ML project predicts house prices in Bangalore based on user-input features like location, square footage, BHK, and more. It uses a cleaned dataset from <strong>Kaggle</strong>, applies rigorous data preprocessing, trains a <strong>Linear Regression model</strong>, and deploys it with a responsive frontend and backend API.<br><br>",
 
-                "<h4>🧹 Data Cleaning & Preprocessing:</h4> - Cleaned raw data from <strong>Kaggle’s Bengaluru House Price Dataset</strong>.<br> - Converted textual fields like size to numerical values.<br> - Handled missing data and removed inconsistent or extreme entries.<br> - Computed <strong>price per square foot</strong> and filtered outliers using statistical techniques.<br><br>",
+                "<h4>🧹 Data Cleaning & Preprocessing:</h4> - Cleaned raw data from <strong>Kaggle's Bengaluru House Price Dataset</strong>.<br> - Converted textual fields like size to numerical values.<br> - Handled missing data and removed inconsistent or extreme entries.<br> - Computed <strong>price per square foot</strong> and filtered outliers using statistical techniques.<br><br>",
 
                 "<h4>🧬 Feature Engineering & Encoding:</h4> - Performed <strong>one-hot encoding</strong> on 'location'.<br> - Applied <strong>label encoding</strong> for 'area_type'.<br> - Selected relevant numerical and categorical variables for model training.<br><br>",
 
@@ -393,11 +509,19 @@ document.addEventListener('DOMContentLoaded', function () {
     // Medium Blog Integration
     const mediumBlogsContainer = document.getElementById('medium-blogs-container');
     const mediumUsername = 'vighneshwarraobandaru';
-    const rssUrl = `https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/@${mediumUsername}`;
+    const rssUrl = `https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/@${mediumUsername}&timestamp=${new Date().getTime()}`;
 
     // Fetch Medium blog posts
     function fetchMediumPosts() {
         if (!mediumBlogsContainer) return;
+
+        // Show loading indicator
+        mediumBlogsContainer.innerHTML = `
+            <div class="blog-loading">
+                <div class="loader"></div>
+                <p>Loading latest articles...</p>
+            </div>
+        `;
 
         fetch(rssUrl)
             .then(response => response.json())
@@ -446,32 +570,46 @@ document.addEventListener('DOMContentLoaded', function () {
                         const blogCard = document.createElement('div');
                         blogCard.className = 'blog-card animate-on-scroll';
                         blogCard.innerHTML = `
-        <div class="blog-image">
-            <img src="${imgUrl}" alt="${item.title}">
-        </div>
-        <div class="blog-content">
-            <div class="blog-date">
-                <i class="far fa-calendar-alt"></i>
-                <span>${formattedDate}</span>
-            </div>
-            <h3 class="blog-title">${item.title}</h3>
-            <p class="blog-excerpt">${excerpt}</p>
-            <a href="${item.link}" target="_blank" class="blog-link">Read More</a>
-        </div>
-    `;
+                            <div class="blog-image">
+                                <img src="${imgUrl}" alt="${item.title}">
+                            </div>
+                            <div class="blog-content">
+                                <div class="blog-date">
+                                    <i class="far fa-calendar-alt"></i>
+                                    <span>${formattedDate}</span>
+                                </div>
+                                <h3 class="blog-title">${item.title}</h3>
+                                <p class="blog-excerpt">${excerpt}</p>
+                                <a href="${item.link}" target="_blank" class="blog-link">Read More</a>
+                            </div>
+                        `;
                         mediumBlogsContainer.appendChild(blogCard);
                     });
 
-                    // ✨ Add a "View All Blogs" button
+                    // Add a "View All Blogs" button
                     const viewAllBtn = document.createElement('div');
                     viewAllBtn.className = 'view-all-blogs';
                     viewAllBtn.innerHTML = `
-    <a href="https://medium.com/@${mediumUsername}" target="_blank" class="primary-btn" style="margin-top: 20px; display: inline-block;">
-        <i class="fa-solid fa-blog"></i> View All Blogs on Medium →
-    </a>
-`;
+                        <a href="https://medium.com/@${mediumUsername}" target="_blank" class="primary-btn" style="margin-top: 20px; display: inline-block;">
+                            <i class="fa-solid fa-blog"></i> View All Blogs on Medium →
+                        </a>
+                    `;
                     mediumBlogsContainer.appendChild(viewAllBtn);
 
+                    // Add a "Refresh Blogs" button
+                    const refreshBtn = document.createElement('div');
+                    refreshBtn.className = 'view-all-blogs';
+                    refreshBtn.innerHTML = `
+                        <button id="refresh-blogs" class="primary-btn" style="margin-top: 10px; display: inline-block; border: none; cursor: pointer;">
+                            <i class="fas fa-sync-alt"></i> Refresh Blogs
+                        </button>
+                    `;
+                    mediumBlogsContainer.appendChild(refreshBtn);
+
+                    // Add event listener to refresh button
+                    document.getElementById('refresh-blogs').addEventListener('click', function() {
+                        fetchMediumPosts();
+                    });
 
                     // Re-run animation classes
                     addAnimationClasses();
@@ -485,8 +623,16 @@ document.addEventListener('DOMContentLoaded', function () {
                             <a href="https://medium.com/@${mediumUsername}" target="_blank" class="primary-btn">
                                 <i class="fab fa-medium"></i> Visit Medium Profile
                             </a>
+                            <button id="refresh-blogs" class="primary-btn" style="margin-top: 20px; display: inline-block; border: none; cursor: pointer;">
+                                <i class="fas fa-sync-alt"></i> Try Again
+                            </button>
                         </div>
                     `;
+                    
+                    // Add event listener to refresh button
+                    document.getElementById('refresh-blogs').addEventListener('click', function() {
+                        fetchMediumPosts();
+                    });
                 }
             })
             .catch(error => {
@@ -497,11 +643,22 @@ document.addEventListener('DOMContentLoaded', function () {
                         <a href="https://medium.com/@${mediumUsername}" target="_blank" class="primary-btn">
                             <i class="fab fa-medium"></i> Visit Medium Profile
                         </a>
+                        <button id="refresh-blogs" class="primary-btn" style="margin-top: 20px; display: inline-block; border: none; cursor: pointer;">
+                            <i class="fas fa-sync-alt"></i> Try Again
+                        </button>
                     </div>
                 `;
+                
+                // Add event listener to refresh button
+                document.getElementById('refresh-blogs').addEventListener('click', function() {
+                    fetchMediumPosts();
+                });
             });
     }
 
     // Initialize Medium blog posts
     fetchMediumPosts();
+    
+    // Call highlightNavLink on page load to set initial active states
+    highlightNavLink();
 });
