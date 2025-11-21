@@ -374,12 +374,46 @@ document.addEventListener('DOMContentLoaded', function () {
             ],
             images: [
                 { src: "Assets/project4_img1.png", caption: "Raw Dataset from Kaggle" },
-                { src: "Assets/project4_img2.png", caption: "Outlier Removal & Feature Engineering" },
-                { src: "Assets/project4_img3.png", caption: "Frontend Interface & API Integration" }
+                { src: "Assets/project4_img3.png", caption: "Outlier Removal & Feature Engineering" },
+                { src: "Assets/project4_img2.png", caption: "Frontend Interface & API Integration" }
             ],
             github: "https://github.com/Vighneshwarrao/House-Prediction",
             live: "https://vighneshwarrao.github.io/Bangalore-House-Prediction/"
-        }
+        },
+        {
+    title: "Dynamic E-commerce Intelligence Platform",
+    tools: [
+        "Python", "Pandas", "NumPy", "Scikit-learn", "FastAPI",
+        "JavaScript", "HTML", "CSS",
+        "Render", "GitHub Pages"
+    ],
+    details: [
+        "<h2>📌 Project Overview:</h2> A full-stack ML system built on the <strong>Olist Brazilian E-commerce Dataset</strong>, integrating four real-world e-commerce intelligence modules: <strong>Sales Forecasting</strong>, <strong>Churn Prediction</strong>, <strong>Product Recommendations</strong>, and <strong>Sentiment Analysis</strong>. Achieved <strong>95% R²</strong> on revenue forecasting and <strong>94% Positive / 89% Negative</strong> precision on sentiment classification.<br><br>",
+
+        "<h4>🧹 Data Engineering:</h4> - Combined orders, customers, items, products, and review datasets into a unified master table.<br> - Translated Portuguese product categories.<br> - Performed EDA on sales trends, customer lifecycle, review patterns, and product behavior.<br> - Generated weekly sales aggregates, RFM features, and sparse user-item matrices.<br><br>",
+
+        "<h4>📈 Sales Forecasting (Linear Regression):</h4> - Engineered lag features, rolling windows, and seasonal indicators.<br> - Trained a weekly time-series model reaching <strong>95% R²</strong>.<br> - Serialized the model with Joblib and exposed through a <code>/predict/sales</code> API.<br><br>",
+
+        "<h4>🧬 Customer Churn Prediction (Logistic Regression):</h4> - Created customer-level RFM+ profiles: recency, frequency, monetary value, avg review score.<br> - Modeled churn probabilities using balanced Logistic Regression.<br> - Served results via <code>/predict/churn/{customer_id}</code> with instant risk scoring.<br><br>",
+
+        "<h4>🛒 Product Recommendations (KNN + Cosine Similarity):</h4> - Built a sparse CSR user-item interaction matrix.<br> - Trained an item-based KNN engine to retrieve similar products.<br> - Implemented a <code>/recommend/products/{product_id}</code> endpoint returning nearest-neighbor items.<br><br>",
+
+        "<h4>💬 Sentiment Analysis (Naive Bayes):</h4> - Cleaned 100K+ Portuguese review texts with tokenization, stopword removal, and TF-IDF.<br> - Achieved <strong>94% Positive</strong> and <strong>89% Negative</strong> precision.<br> - Exposed classification through <code>/analyze/sentiment</code>.<br><br>",
+
+        "<h4>⚙️ FastAPI Backend & Model Serving:</h4> - Organized separate routes for each module.<br> - Loaded joblib models on-demand with consistent preprocessing pipelines.<br> - Returned JSON outputs for real-time prediction across all four intelligence layers.<br><br>",
+
+        "<h4>🌐 Frontend Dashboard & Deployment:</h4> - Built a 4-module interactive dashboard using pure <strong>HTML, CSS, JavaScript</strong>.<br> - Added real-time fetch calls to FastAPI endpoints.<br> - Rendered sales predictions, churn scores, product similarities, and sentiment results dynamically.<br> - Deployed backend on <strong>Render</strong> and frontend on <strong>GitHub Pages</strong>.<br><br>"
+    ],
+    images: [
+        { src: "Assets/project5_img1.png", caption: "Master Dataset" },
+        { src: "Assets/project5_img2.png", caption: "Frontend" },
+        { src: "Assets/project5_img3.png", caption: "FastAPI App" }
+    ],
+    github: "https://github.com/Vighneshwarrao/The-Dynamic-E-commerce-Intelligence-Platform",
+    live: "https://vighneshwarrao.github.io/The-Dynamic-E-commerce-Intelligence-Platform/"
+}
+
+
 
     ];
 
@@ -626,12 +660,7 @@ document.addEventListener('DOMContentLoaded', function () {
                             <i class="fas fa-sync-alt"></i> Refresh Blogs
                         </button>
                     `;
-                    mediumBlogsContainer.appendChild(refreshBtn);
-
-                    // Add event listener to refresh button
-                    document.getElementById('refresh-blogs').addEventListener('click', function () {
-                        fetchMediumPosts();
-                    });
+                    
 
                     // Re-run animation classes
                     addAnimationClasses();
